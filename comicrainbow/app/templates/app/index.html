@@ -1,0 +1,60 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+      $('.slider').bxSlider({
+          mode: 'fade',//horizontal, vertical, fade
+          auto: true,
+          pause: 2000
+      });
+    });
+</script>
+{% endblock %}
+
+{% block css %}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+
+{% endblock %}
+
+{% block contenido %}
+<div class="slider">
+    <div>
+        <img src="{% static 'app/img/carru/dcc2.jpg' %}" alt="">
+    </div>
+    <div>
+        <img src="{% static 'app/img/carru/mar1.jpg' %}" alt="">
+    </div>
+    <div>
+        <img src="{% static 'app/img/carru/dcc3.jpg' %}" alt="">
+    </div>
+</div>
+
+<div class="container-deck"> 
+{% load humanize %}
+    <h2>Comics Rainbow</h2>
+    <div class="comics row">
+
+        {% for c in comics %}
+            <div class="comic col-md">
+            <div class="contenedor_comic text-center">
+                {% if c.imagen %}
+                <img class="card-img-top" src="{{ c.imagen.url }}" alt="imagen comic">
+                {% endif %}
+                <div class="card-body">
+                    <div class="detalle">
+                        <h5>{{ c.marca | capfirst }}</h5>
+                        <h2>{{ c.nombre | title }}</h2>
+                        <h3>${{ c.precio | intcomma }}</h3>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

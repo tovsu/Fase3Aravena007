@@ -1,0 +1,14 @@
+ADMINISTRADORES
+
+nombre : admin
+contraseña : adminadmin
+
+
+USUARIOS
+
+nombre : perrito
+contraseña : adminadmin
+
+
+nombre : gatito
+contraseña : adminadmin

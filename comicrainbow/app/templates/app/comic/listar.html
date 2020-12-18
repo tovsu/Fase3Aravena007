@@ -1,0 +1,51 @@
+{% extends 'app/base.html' %}
+
+{% block js %}
+
+
+{% endblock %}
+
+{% block contenido %}
+{% load humanize %}
+<br>
+<br>
+<br>
+<div class="card">
+    <div class="card body">
+        <h2>lista de comic</h2>
+        <table class="table table-striped  table-hover table-responsive-sm">
+            <tr>
+                <tr>Nombre</tr>
+                &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <tr>Precio</tr>
+                &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <tr>editorial</tr>
+                &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <tr>Opciones</tr>
+                
+            </tr>
+        
+            {% for c in comics %}
+        
+            <tr>
+                <td>{{ c.nombre | title }}</td>
+                <td>${{ c.precio | intcomma }}</td>
+                <td>{{ c.editorial | title }}</td>
+      
+                <td>
+                    {% if perms.app.change_comic %}
+                    <a href="{% url 'modificar_comic' c.id %}" class="btn btn-info btn-sm">editar</a>
+                    {% if perms.app.delete_comic %}
+                    <a href="{% url 'eliminar_comic' c.id %}" class="btn-danger btn-sm">eliminar</a>
+                    {% endif %}
+                    {% endif%}               
+                </td>                
+            </tr>
+            {% endfor %}
+        
+        </table>      
+    </div>
+</div>
+
+
+{% endblock %}
