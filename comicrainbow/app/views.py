@@ -25,7 +25,6 @@ from .serializers import ComicSerializer,EditorialSerializer
      #  return comics
 
 
-
 def index(request):
     comics = Comic.objects.all()
     data = {
