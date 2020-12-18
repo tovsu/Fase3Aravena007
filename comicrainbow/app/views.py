@@ -24,7 +24,6 @@ from .serializers import ComicSerializer,EditorialSerializer
      #      comics = comics .filter(nombre__contains="nombre")
      #  return comics
 
-
 def index(request):
     comics = Comic.objects.all()
     data = {
